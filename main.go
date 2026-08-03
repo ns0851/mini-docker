@@ -13,19 +13,26 @@ func main() {
 		return
     	}
 
-    	if !doesContain(acceptedCommands, os.Args[1]) {
+	if !doesContain(acceptedCommands, os.Args[1]) {
 		fmt.Println("Unknown command: ", os.Args[1])
-    	} else {
-		if os.Args[1] != "run" && os.Args[1]!="child" {
-			fmt.Println("Command not implemented yet")
-		} else if os.Args[1] == "child" {
-			fmt.Println("Initiate child process")
-		} else if len(os.Args) < 3 {
-			fmt.Println("Image not specified")
-		} else if len(os.Args) < 4 {
-			fmt.Println("Command not specified")
-		}
+		return
 	}
+
+	if len(os.Args) < 3 {
+		fmt.Println("Image not specified")
+	} else if len(os.Args) < 4 {
+		fmt.Println("Command not specified")
+	}
+
+	switch (os.Args[1]) {
+		case "run":
+			fmt.Println("implement run here")
+		case "child":
+			fmt.Println("implement child here")
+		case default:
+			fmt.Println("not implemented yet")
+	}
+
 }
 
 func doesContain(sl []string, name string) bool {
