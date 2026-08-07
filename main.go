@@ -18,29 +18,14 @@ func main() {
 		return
 	}
 
-	if len(os.Args) < 3 {
-		fmt.Println("Image not specified")
-	} else if len(os.Args) < 4 {
-		fmt.Println("Command not specified")
-	}
 
 	switch (os.Args[1]) {
 		case "run":
-			fmt.Println("implement run here")
+			run()
+
 		case "child":
-			fmt.Println("implement child here")
-		case default:
-			fmt.Println("not implemented yet")
+			child()
 	}
 
 }
 
-func doesContain(sl []string, name string) bool {
-	    // iterate over the array and compare given string to each element
-	for _, value := range sl {
-	        if value == name {
-	            return true
-            }
-       }
-       return false
-}
