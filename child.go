@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"syscall"
+	"golang.org/x/sys/unix"
 )
 
 func child() {
@@ -25,10 +26,18 @@ func child() {
 		log.Fatal(err)
 	}
 
+	if err := unix.Mount("", "/", "", unix.MS_PRIVATE|unix.MS_REC, ""); err != nil {
+		log.Fatal(err)
+	}
+
 	if err := syscall.Chroot("/root/mini-docker/images/alpine"); err != nil {
 		log.Fatal(err)
 	}
 	os.Chdir("/")
+
+	if err := unix.Mount("", "/proc", "proc",0,""); err != nil {
+		log.Fatal(err)
+	}
 
 
 	if err:=cmd.Run(); err != nil {

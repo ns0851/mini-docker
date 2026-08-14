@@ -22,7 +22,7 @@ func run() {
 
 	// Adding PID namespace so that the child process is mapped with PID of 1
 	cmd.SysProcAttr = &syscall.SysProcAttr {
-		Cloneflags: syscall.CLONE_NEWPID | syscall.CLONE_NEWUTS,	
+		Cloneflags: syscall.CLONE_NEWPID | syscall.CLONE_NEWUTS | syscall.CLONE_NEWNS,	
 	}
 
 	if err := cmd.Run(); err != nil {
